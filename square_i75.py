@@ -4,10 +4,10 @@ draw some rectangles
 make 'em bounce
 """
 import time
-import board
-import displayio
-import framebufferio
-import rgbmatrix
+import board # pylint: disable=import-error
+import displayio # pylint: disable=import-error
+import framebufferio # pylint: disable=import-error
+import rgbmatrix # pylint: disable=import-error
 
 
 def make_rect(color, width, height):

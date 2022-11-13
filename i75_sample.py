@@ -3,12 +3,12 @@ sample.py
 very basic interstate75 code
 not for individual resale
 """
-import board
-import displayio
-import framebufferio
-import rgbmatrix
-import terminalio
-from rainbowio import colorwheel
+import board # pylint: disable=import-error
+import displayio # pylint: disable=import-error
+import framebufferio # pylint: disable=import-error
+import rgbmatrix # pylint: disable=import-error
+import terminalio # pylint: disable=import-error
+from rainbowio import colorwheel # pylint: disable=import-error
 
 import time
 
@@ -32,9 +32,6 @@ matrix = rgbmatrix.RGBMatrix(
 
 display = framebufferio.FramebufferDisplay(matrix, auto_refresh=True)
 
-
 g = displayio.Group()
-
-
 
 display.show(g)
