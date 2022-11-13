@@ -4,10 +4,10 @@ draw some rectangles
 make 'em bounce
 """
 import time
-import board # pylint: disable=import-error
-import displayio # pylint: disable=import-error
-import framebufferio # pylint: disable=import-error
-import rgbmatrix # pylint: disable=import-error
+import board  # pylint: disable=import-error
+import displayio  # pylint: disable=import-error
+import framebufferio  # pylint: disable=import-error
+import rgbmatrix  # pylint: disable=import-error
 
 
 def make_rect(color, width, height):
@@ -19,9 +19,14 @@ def make_rect(color, width, height):
     w_end = width - 1
 
     palette1 = displayio.Palette(3)
-    palette1[0] = (color[0], color[1], color[2])
-    palette1[1] = (int(color[0] * 0.1), int(color[1] * 0.1), int(color[2] * 0.1))
-    palette1[2] = (0, 0, 0)
+    palette1[0] = (color[0], color[1], color[2])  # the passed-in color
+    palette1[1] = (
+        int(color[0] * 0.1),
+        int(color[1] * 0.1),
+        int(color[2] * 0.1),
+    )  # the passed-in color at 10%
+    palette1[2] = (0, 0, 0)  # black
+
     bitmap1 = displayio.Bitmap(width, height, 3)
 
     bitmap1[w_start + 1, h_start] = 1
@@ -83,9 +88,9 @@ def main():
     group_main = displayio.Group()
     display.show(group_main)
 
-    color1 = (255, 165, 0)
-    color2 = (173, 216, 230)
-    color3 = (0, 255, 0)
+    color1 = (255, 165, 0)  # orange
+    color2 = (173, 216, 230)  # light blue
+    color3 = (0, 255, 0)  # green
     width = height = 20
 
     tile_grid1 = make_rect(color1, width, height)
