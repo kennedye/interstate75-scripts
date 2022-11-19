@@ -10,7 +10,7 @@ import framebufferio  # pylint: disable=import-error
 import rgbmatrix  # pylint: disable=import-error
 
 
-def make_rect(color, width, height):
+def make_rect(color: int, width: int, height: int) -> displayio.TileGrid:
     """
     create a "rounded" rectangle and return it as a single TileGrid
     """
@@ -46,7 +46,7 @@ def make_rect(color, width, height):
     return displayio.TileGrid(bitmap1, pixel_shader=palette1)
 
 
-def move_down(rect):
+def move_down(rect: displayio.Group()):
     """
     move a rectangle's Group down (todo: add gravity?)
     """
@@ -55,7 +55,7 @@ def move_down(rect):
         rect.y = i
 
 
-def move_up(rect):
+def move_up(rect: displayio.Group()):
     """
     move a rectangle's Group up (todo: add gravity?)
     """
