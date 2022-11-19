@@ -46,7 +46,7 @@ def make_rect(color: int, width: int, height: int) -> displayio.TileGrid:
     return displayio.TileGrid(bitmap1, pixel_shader=palette1)
 
 
-def move_down(rect: displayio.Group()):
+def move_down(rect: displayio.Group()) -> None:
     """
     move a rectangle's Group down (todo: add gravity?)
     """
@@ -55,7 +55,7 @@ def move_down(rect: displayio.Group()):
         rect.y = i
 
 
-def move_up(rect: displayio.Group()):
+def move_up(rect: displayio.Group()) -> None:
     """
     move a rectangle's Group up (todo: add gravity?)
     """
