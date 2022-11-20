@@ -54,22 +54,24 @@ def main():
 
     g = displayio.Group()
 
-    display.show(g)
-    
-    group1 = displayio.Group()
-    group1.append(code_line())
+    while True:
+        group1 = displayio.Group()
+        
+        tile1 = code_line()
+        group1.append(tile1)
 
-    group1.x = random.randint(0, matrix.width)
-    group1.y = -8
+        group1.x = random.randint(0, matrix.width)
+        group1.y = -8
 
-    g.append(group1)
+        g.append(group1)
+        display.show(g)
 
-    time.sleep(2)
+        time.sleep(2)
 
-    pos = group1.y
-    for i in range(pos, matrix.height + 8):
-        time.sleep(0.05)
-        group1.y = i
+        pos = group1.y
+        for i in range(pos, matrix.height + 8):
+            time.sleep(0.05)
+            group1.y = i
 
 if __name__ == "__main__":
     main()
