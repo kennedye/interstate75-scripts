@@ -81,14 +81,13 @@ def make_tree() -> displayio.TileGrid:
 
 def make_lights() -> displayio.TileGrid:
     """
-    light random pixels on an overlay tile to emulate lights
+    generate randomly-colored single-pixel TileGrids to represent lights
     """
     palette1 = displayio.Palette(3)
     palette1[0] = (255, 0, 0) # red
     palette1[1] = (255, 255, 0) # yellow
     palette1[2] = (0, 0, 255) # blue
 
-    # set some points on the tree to random colors
     bitmap1 = displayio.Bitmap(1, 1, 3)
     bitmap1[0, 0] = random.randint(0, 2)
     return displayio.TileGrid(bitmap1, pixel_shader=palette1)
@@ -117,6 +116,7 @@ def main():
     group_main = displayio.Group()
     display.show(group_main)
 
+    # show the tree
     tree_grid = make_tree()
     tree_group = displayio.Group()
     tree_group.append(tree_grid)
@@ -126,8 +126,7 @@ def main():
 
     group_main.append(tree_group)
 
-    time.sleep(3)
-
+    # lighrs is an array of points where those single-pixel TileMaps go
     lights = [
         (9, 16),
         (13, 14),
@@ -154,6 +153,7 @@ def main():
             light_group.y = lights[i][1]
             group_main.append(light_group)
         time.sleep(1)
+        # delete the added groups to keep from running out of RAM
         for i, _ in enumerate(lights):
             group_main.pop()
 
