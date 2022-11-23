@@ -164,12 +164,12 @@ def main():
         (32, 11),
         (32, 21)
     ]
-    for i in range(len(lights)):
+    for _, pos in enumerate(lights):
         light_grid = make_lights()
         light_group = displayio.Group()
         light_group.append(light_grid)
-        light_group.x = lights[i][0]
-        light_group.y = lights[i][1]
+        light_group.x = lights[pos][0]
+        light_group.y = lights[pos][1]
     
         group_main.append(light_group)
 
