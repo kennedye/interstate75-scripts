@@ -93,24 +93,6 @@ def make_lights() -> displayio.TileGrid:
     bitmap1[0, 0] = random.randint(0, 2)
     return displayio.TileGrid(bitmap1, pixel_shader=palette1)
 
-# def move_down(rect: displayio.Group()) -> None:
-#     """
-#     move a rectangle's Group down (todo: add gravity?)
-#     """
-#     for i in range(10):
-#         time.sleep(0.025)
-#         rect.y = i
-
-
-# def move_up(rect: displayio.Group()) -> None:
-#     """
-#     move a rectangle's Group up (todo: add gravity?)
-#     """
-#     for i in range(9, -1, -1):
-#         time.sleep(0.025)
-#         rect.y = i
-
-
 def main():
     """
     they call it main.
