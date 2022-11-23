@@ -8,7 +8,7 @@ import board  # pylint: disable=import-error
 import displayio  # pylint: disable=import-error
 import framebufferio  # pylint: disable=import-error
 import rgbmatrix  # pylint: disable=import-error
-from ulab import numpy as np # pylint: disable=import-error
+from ulab import numpy as np  # pylint: disable=import-error
 
 
 def make_tree() -> displayio.TileGrid:
@@ -18,49 +18,49 @@ def make_tree() -> displayio.TileGrid:
 
     base_tree = np.array(
         [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 4, 1, 1, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 3, 3, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 1, 1, 4, 1, 1, 4, 1, 1, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 1, 4, 1, 3, 3, 1, 3, 3, 1, 3, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 3, 4, 4, 3, 4, 4, 3, 3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 1, 2, 2, 2, 2, 3, 1, 3, 4, 4, 4, 1, 4, 4, 4, 1, 1, 4, 4, 4, 1, 4, 1, 4, 3, 3, 1, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 1, 2, 2, 2, 1, 1, 0, 1, 4, 1, 1, 5, 1, 4, 1, 5, 5, 1, 4, 1, 0, 1, 0, 1, 3, 3, 1, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 6, 5, 5, 1, 5, 5, 5, 6, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 4, 1, 1, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 3, 3, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 1, 1, 4, 1, 1, 4, 1, 1, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 1, 4, 1, 3, 3, 1, 3, 3, 1, 3, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 3, 4, 4, 3, 4, 4, 3, 3, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 1, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 1, 2, 2, 2, 2, 3, 1, 3, 4, 4, 4, 1, 4, 4, 4, 1, 1, 4, 4, 4, 1, 4, 1, 4, 3, 3, 1, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 1, 2, 2, 2, 1, 1, 0, 1, 4, 1, 1, 5, 1, 4, 1, 5, 5, 1, 4, 1, 0, 1, 0, 1, 3, 3, 1, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 6, 5, 5, 1, 5, 5, 5, 6, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # pylint: disable=line-too-long
         ], dtype=np.uint8
     )
-    tree_size = base_tree.shape # should be (32, 40)
+    tree_size = base_tree.shape  # should be (32, 40)
 
     palette1 = displayio.Palette(7)
     palette1[0] = (0, 0, 0)  # black
@@ -84,9 +84,9 @@ def make_lights() -> displayio.TileGrid:
     generate randomly-colored single-pixel TileGrids to represent lights
     """
     palette1 = displayio.Palette(3)
-    palette1[0] = (255, 0, 0) # red
-    palette1[1] = (255, 255, 0) # yellow
-    palette1[2] = (0, 0, 255) # blue
+    palette1[0] = (255, 0, 0)  # red
+    palette1[1] = (255, 255, 0)  # yellow
+    palette1[2] = (0, 0, 255)  # blue
 
     bitmap1 = displayio.Bitmap(1, 1, 3)
     bitmap1[0, 0] = random.randint(0, 2)
@@ -149,8 +149,8 @@ def main():
             light_grid = make_lights()
             light_group = displayio.Group()
             light_group.append(light_grid)
-            light_group.x = lights[i][0] # pylint: disable=unnecessary-list-index-lookup
-            light_group.y = lights[i][1] # pylint: disable=unnecessary-list-index-lookup
+            light_group.x = lights[i][0]  # pylint: disable=unnecessary-list-index-lookup
+            light_group.y = lights[i][1]  # pylint: disable=unnecessary-list-index-lookup
             group_main.append(light_group)
         time.sleep(1)
         # delete the added groups to keep from running out of RAM
