@@ -79,6 +79,7 @@ def make_tree() -> displayio.TileGrid:
 
     return displayio.TileGrid(bitmap1, pixel_shader=palette1)
 
+
 def make_lights() -> displayio.TileGrid:
     """
     generate randomly-colored single-pixel TileGrids to represent lights
@@ -91,6 +92,7 @@ def make_lights() -> displayio.TileGrid:
     bitmap1 = displayio.Bitmap(1, 1, 3)
     bitmap1[0, 0] = random.randint(0, 2)
     return displayio.TileGrid(bitmap1, pixel_shader=palette1)
+
 
 def main():
     """
@@ -142,7 +144,7 @@ def main():
         (29, 22),
         (30, 19),
         (32, 11),
-        (32, 21)
+        (32, 21),
     ]
     while True:
         for i, _ in enumerate(lights):
