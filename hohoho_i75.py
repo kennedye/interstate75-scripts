@@ -83,17 +83,16 @@ def make_lights() -> displayio.TileGrid:
     """
     light random pixels on an overlay tile to emulate lights
     """
-    # light_tree = np.array(32, 40, dtype=np.uint8) # todo: make this match base_tree somehow
     palette1 = displayio.Palette(3)
     palette1[0] = (255, 0, 0) # red
     palette1[1] = (255, 255, 0) # yellow
     palette1[2] = (0, 0, 255) # blue
-    
+
     # set some points on the tree to random colors
     bitmap1 = displayio.Bitmap(1, 1, 3)
     bitmap1[0, 0] = random.randint(0, 2)
     return displayio.TileGrid(bitmap1, pixel_shader=palette1)
-    
+
 # def move_down(rect: displayio.Group()) -> None:
 #     """
 #     move a rectangle's Group down (todo: add gravity?)
@@ -146,7 +145,7 @@ def main():
     group_main.append(tree_group)
 
     time.sleep(3)
-    
+
     lights = [
         (9, 16),
         (13, 14),
@@ -164,14 +163,17 @@ def main():
         (32, 11),
         (32, 21)
     ]
-    for _, pos in enumerate(lights):
-        light_grid = make_lights()
-        light_group = displayio.Group()
-        light_group.append(light_grid)
-        light_group.x = lights[pos][0]
-        light_group.y = lights[pos][1]
-    
-        group_main.append(light_group)
+    while True:
+        for i, _ in enumerate(lights):
+            light_grid = make_lights()
+            light_group = displayio.Group()
+            light_group.append(light_grid)
+            light_group.x = lights[i][0]
+            light_group.y = lights[i][1]
+            group_main.append(light_group)
+        time.sleep(1)
+        for i, _ in enumerate(lights):
+            group_main.pop()
 
 
 if __name__ == "__main__":
