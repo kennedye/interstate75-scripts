@@ -131,3 +131,9 @@ dmypy.json
 *** Visual Studio Code ***
 .vscode
 *.code-workspace
+
+# files used for interstate75 settings
+secrets.py
+af_secrets.py
+_secrets.py
+settings.toml
