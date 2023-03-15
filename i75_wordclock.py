@@ -6,7 +6,7 @@
 # Runs on Airlift Metro M4 with 64x32 RGB Matrix display & shield
 
 import time
-import rtc
+# import rtc
 import board
 import displayio
 import terminalio
@@ -20,7 +20,7 @@ import adafruit_ds3231
 
 
 BLINK = False
-DEBUG = True
+DEBUG = False
 
 # Get wifi details and more from a secrets.py file
 # try:
@@ -32,7 +32,8 @@ DEBUG = True
 # print("Time will be set for {}".format(secrets["timezone"]))
 i2c = board.I2C()
 ds3231 = adafruit_ds3231.DS3231(i2c)
-the_rtc = rtc.RTC()
+
+# the_rtc = rtc.RTC()
 
 # --- Display setup ---
 # matrix = Matrix()
@@ -68,10 +69,7 @@ tile_grid = displayio.TileGrid(bitmap, pixel_shader=color)
 group.append(tile_grid)  # Add the TileGrid to the Group
 display.show(group)
 
-if not DEBUG:
-    font = bitmap_font.load_font("/IBMPlexMono-Medium-24_jep.bdf")
-else:
-    font = terminalio.FONT
+font = terminalio.FONT
 #     font = bitmap_font.load_font("/DePixelHalbfett.bdf")
 
 
@@ -172,34 +170,18 @@ def calculate_hour(hr_val: int) -> str:
 
 
 
-def update_time(*, hours=None, minutes=None, show_colon=False):
-    now = ds3231.datetime  # Get the time values we need
-    if hours is None:
-        hours = now[3]
-    if hours >= 18 or hours < 6:  # evening hours to morning
-        clock_label.color = color[1]
+def update_time():
+
+    today = ds3231.datetime
+    if today.tm_hour >= 18 or today.tm_hour < 6:  # evening hours to morning
         clock_label_minute.color = color[1]
         clock_label_when.color = color[1]
         clock_label_hour.color = color[1]
     else:
-        clock_label.color = color[3]  # daylight hours
         clock_label_minute.color = color[3]  # daylight hours
         clock_label_when.color = color[3]  # daylight hours
         clock_label_hour.color = color[3]  # daylight hours
-    if hours > 12:  # Handle times later than 12:59
-        hours -= 12
-    elif not hours:  # Handle times between 0:00 and 0:59
-        hours = 12
 
-    if minutes is None:
-        minutes = now[4]
-
-    if BLINK:
-        colon = ":" if show_colon or now[5] % 2 else " "
-    else:
-        colon = ":"
-
-    today = time.localtime()
     twelve_hour = today.tm_hour - 12 if today.tm_hour > 12 else today.tm_hour
 
     (minute_word, when, next_hour) = calculate_minute(today.tm_min)
@@ -207,9 +189,6 @@ def update_time(*, hours=None, minutes=None, show_colon=False):
     our_hour = 1 if our_hour == 13 else our_hour
     hour_word = calculate_hour(our_hour)
 
-    clock_label.text = "{hours}{colon}{minutes:02d}".format(
-        hours=hours, minutes=minutes, colon=colon
-    )
     clock_label_minute.text = "{minute_word}".format(
         minute_word=minute_word
     )
@@ -219,13 +198,10 @@ def update_time(*, hours=None, minutes=None, show_colon=False):
     clock_label_hour.text = "{hour_word}".format(
         hour_word=hour_word
     )
-    bbx, bby, bbwidth, bbh = clock_label.bounding_box
     bbx_minute, bby_minute, bbwidth_minute, bbh_minute = clock_label_minute.bounding_box
     bbx_when, bby_when, bbwidth_when, bbh_when = clock_label_when.bounding_box
     bbx_hour, bby_hour, bbwidth_hour, bbh_hour = clock_label.bounding_box
     # Center the label
-    clock_label.x = round(display.width / 2 - bbwidth / 2)
-    clock_label.y = display.height // 2
     clock_label_minute.x = round(display.width / 2 - bbwidth_minute / 2)
     clock_label_minute.y = 4
     clock_label_when.x = round(display.width / 2 - bbwidth_when / 2)
@@ -238,7 +214,7 @@ def update_time(*, hours=None, minutes=None, show_colon=False):
 
 
 last_check = None
-update_time(show_colon=True)  # Display whatever time is on the board
+update_time()  # Display whatever time is on the board
 # group.append(clock_label)  # add the clock label to the group
 group.append(clock_label_minute)  # add the clock label to the group
 group.append(clock_label_when)  # add the clock label to the group
@@ -247,9 +223,7 @@ group.append(clock_label_hour)  # add the clock label to the group
 while True:
     if last_check is None or time.monotonic() > last_check + 3600:
         try:
-            update_time(
-                show_colon=False
-            )  # Make sure a colon is displayed while updating
+            update_time()  # Make sure a colon is displayed while updating
 #             network.get_local_time()  # Synchronize Board's clock to Internet
             last_check = time.monotonic()
         except RuntimeError as e:
