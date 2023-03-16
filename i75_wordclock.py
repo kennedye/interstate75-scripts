@@ -45,7 +45,7 @@ displayio.release_displays()
 matrix = rgbmatrix.RGBMatrix(
     width=64,
     height=32,
-    bit_depth=4,
+    bit_depth=6,
     rgb_pins=[board.R0, board.G0, board.B0, board.R1, board.G1, board.B1],
     addr_pins=[board.ROW_A, board.ROW_B, board.ROW_C, board.ROW_D],
     clock_pin=board.CLK,
@@ -57,12 +57,16 @@ display = framebufferio.FramebufferDisplay(matrix, auto_refresh=True)
 
 # --- Drawing setup ---
 group = displayio.Group()  # Create a Group
-bitmap = displayio.Bitmap(64, 32, 2)  # Create a bitmap object,width, height, bit depth
-color = displayio.Palette(4)  # Create a color palette
+bitmap = displayio.Bitmap(64, 32, 6)  # Create a bitmap object,width, height, bit depth
+color = displayio.Palette(8)  # Create a color palette
 color[0] = 0x000000  # black background
-color[1] = 0xFF0000  # red
-color[2] = 0xCC4000  # amber
-color[3] = 0x85FF00  # greenish
+color[1] = 0x0000ff
+color[2] = 0x006fff
+color[3] = 0x009bff
+color[4] = 0x00baff
+color[5] = 0x00d5d8
+color[6] = 0x00ed80
+color[7] = 0x00ff00
 
 # Create a TileGrid using the Bitmap and Palette
 tile_grid = displayio.TileGrid(bitmap, pixel_shader=color)
@@ -173,14 +177,34 @@ def calculate_hour(hr_val: int) -> str:
 def update_time():
 
     today = ds3231.datetime
-    if today.tm_hour >= 18 or today.tm_hour < 6:  # evening hours to morning
+    if today.tm_hour >= 18 or today.tm_hour <= 6:  # evening hours to morning
         clock_label_minute.color = color[1]
         clock_label_when.color = color[1]
         clock_label_hour.color = color[1]
+    elif today.tm_hour == 7 or today.tm_hour == 17:
+        clock_label_minute.color = color[2]
+        clock_label_when.color = color[2]
+        clock_label_hour.color = color[2]
+    elif today.tm_hour == 8 or today.tm_hour == 16:
+        clock_label_minute.color = color[3]
+        clock_label_when.color = color[3]
+        clock_label_hour.color = color[3]
+    elif today.tm_hour == 9 or today.tm_hour == 15:
+        clock_label_minute.color = color[4]
+        clock_label_when.color = color[4]
+        clock_label_hour.color = color[4]
+    elif today.tm_hour == 10 or today.tm_hour == 14:
+        clock_label_minute.color = color[5]
+        clock_label_when.color = color[5]
+        clock_label_hour.color = color[5]
+    elif today.tm_hour == 11 or today.tm_hour == 13:
+        clock_label_minute.color = color[6]
+        clock_label_when.color = color[6]
+        clock_label_hour.color = color[6]
     else:
-        clock_label_minute.color = color[3]  # daylight hours
-        clock_label_when.color = color[3]  # daylight hours
-        clock_label_hour.color = color[3]  # daylight hours
+        clock_label_minute.color = color[7]
+        clock_label_when.color = color[7]
+        clock_label_hour.color = color[7]
 
     twelve_hour = today.tm_hour - 12 if today.tm_hour > 12 else today.tm_hour
 
@@ -200,7 +224,7 @@ def update_time():
     )
     bbx_minute, bby_minute, bbwidth_minute, bbh_minute = clock_label_minute.bounding_box
     bbx_when, bby_when, bbwidth_when, bbh_when = clock_label_when.bounding_box
-    bbx_hour, bby_hour, bbwidth_hour, bbh_hour = clock_label.bounding_box
+    bbx_hour, bby_hour, bbwidth_hour, bbh_hour = clock_label_hour.bounding_box
     # Center the label
     clock_label_minute.x = round(display.width / 2 - bbwidth_minute / 2)
     clock_label_minute.y = 4
