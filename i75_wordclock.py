@@ -92,52 +92,51 @@ def calculate_minute(min_val: int) -> tuple:
         tuple: the equivalent time string, past/to wording, and whether to add one to the hour
     """
     # hat tip to https://github.com/andydoro/WordClock-NeoMatrix8x8 for the idea & code
-    # there's probably a more Pythonic way to do this, but eff it, it works
     if min_val < 5:
         min_string = ""
         past_to = ""
         hour_adjust = 0
-    if min_val >= 5 and min_val < 10:
+    if  5 <= min_val < 10:
         min_string = "five"
         past_to = "past"
         hour_adjust = 0
-    if min_val >= 10 and min_val < 15:
+    if  10 <= min_val < 15:
         min_string = "ten"
         past_to = "past"
         hour_adjust = 0
-    if min_val >= 15 and min_val < 20:
+    if 15 <= min_val < 20:
         min_string = "quarter"
         past_to = "past"
         hour_adjust = 0
-    if min_val >= 20 and min_val < 25:
+    if 20 <= min_val < 25:
         min_string = "twenty"
         past_to = "past"
         hour_adjust = 0
-    if min_val >= 25 and min_val < 30:
+    if 25 <= min_val < 30:
         min_string = "twenty-five"
         past_to = "past"
         hour_adjust = 0
-    if min_val >= 30 and min_val < 35:
+    if 30 <= min_val < 35:
         min_string = "half"
         past_to = "past"
         hour_adjust = 0
-    if min_val >= 35 and min_val < 40:
+    if 35 <= min_val < 40:
         min_string = "twenty-five"
         past_to = "to"
         hour_adjust = 1
-    if min_val >= 40 and min_val < 45:
+    if 40 <= min_val < 45:
         min_string = "twenty"
         past_to = "to"
         hour_adjust = 1
-    if min_val >= 45 and min_val < 50:
+    if 45 <= min_val < 50:
         min_string = "quarter"
         past_to = "to"
         hour_adjust = 1
-    if min_val >= 50 and min_val < 55:
+    if 50 <= min_val < 55:
         min_string = "ten"
         past_to = "to"
         hour_adjust = 1
-    if min_val >= 55 and min_val < 60:
+    if 55 <= min_val < 60:
         min_string = "five"
         past_to = "to"
         hour_adjust = 1
