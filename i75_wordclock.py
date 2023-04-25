@@ -10,6 +10,7 @@ import time
 import board
 import displayio
 import terminalio
+from rainbowio import colorwheel
 from adafruit_display_text.label import Label
 from adafruit_bitmap_font import bitmap_font
 # from adafruit_matrixportal.network import Network
@@ -77,10 +78,9 @@ font = terminalio.FONT
 #     font = bitmap_font.load_font("/DePixelHalbfett.bdf")
 
 
-clock_label = Label(font)
-clock_label_minute = Label(font)
-clock_label_when = Label(font)
-clock_label_hour = Label(font)
+clock_label_minute = Label(font = font)
+clock_label_when = Label(font = font)
+clock_label_hour = Label(font = font)
 
 def calculate_minute(min_val: int) -> tuple:
     """turn a minute value into a time string
@@ -169,6 +169,17 @@ def calculate_hour(hr_val: int) -> str:
         10: "ten",
         11: "eleven",
         12: "noon",
+        13: "one",
+        14: "two",
+        15: "three",
+        16: "four",
+        17: "five",
+        18: "six",
+        19: "seven",
+        20: "eight",
+        21: "nine",
+        22: "ten",
+        23: "eleven",
     }
     return n2w[hr_val]
 
@@ -205,41 +216,33 @@ def update_time():
         clock_label_minute.color = color[7]
         clock_label_when.color = color[7]
         clock_label_hour.color = color[7]
-
-    twelve_hour = today.tm_hour - 12 if today.tm_hour > 12 else today.tm_hour
+    # clock_label_minute.color = None
+    # clock_label_when.color = None
+    # clock_label_hour.color = None
+    
 
     (minute_word, when, next_hour) = calculate_minute(today.tm_min)
-    our_hour = twelve_hour + next_hour
-    our_hour = 1 if our_hour == 13 else our_hour
-    hour_word = calculate_hour(our_hour)
-
-    clock_label_minute.text = "{minute_word}".format(
-        minute_word=minute_word
-    )
-    clock_label_when.text = "{when}".format(
-        when=when
-    )
-    clock_label_hour.text = "{hour_word}".format(
-        hour_word=hour_word
-    )
-    bbx_minute, bby_minute, bbwidth_minute, bbh_minute = clock_label_minute.bounding_box
-    bbx_when, bby_when, bbwidth_when, bbh_when = clock_label_when.bounding_box
-    bbx_hour, bby_hour, bbwidth_hour, bbh_hour = clock_label_hour.bounding_box
+    hour_word = calculate_hour(today.tm_hour + next_hour)
+    if minute_word:
+        clock_label_minute.text = minute_word
+        clock_label_when.text = when
+        clock_label_hour.text = hour_word
+    else: #  on the hour so center the hour and add an am/pm
+        am_pm = " am" if today.tm_hour < 12 else " pm"
+        clock_label_minute.text = ""
+        clock_label_when.text = hour_word + am_pm if (today.tm_hour != 0 or today.tm_hour != 12) else hour_word
+        clock_label_hour.text = ""
     # Center the label
-    clock_label_minute.x = round(display.width / 2 - bbwidth_minute / 2)
+    clock_label_minute.x = round(display.width / 2 - clock_label_minute.width / 2)
     clock_label_minute.y = 4
-    clock_label_when.x = round(display.width / 2 - bbwidth_when / 2)
+    clock_label_when.x = round(display.width / 2 - clock_label_when.width / 2)
     clock_label_when.y = 15
-    clock_label_hour.x = round(display.width / 2 - bbwidth_hour / 2)
+    clock_label_hour.x = round(display.width / 2 - clock_label_hour.width / 2)
     clock_label_hour.y = 26
-#     if DEBUG:
-#         print("Label bounding box: {},{},{},{}".format(bbx, bby, bbwidth, bbh))
-#         print("Label x: {} y: {}".format(clock_label.x, clock_label.y))
-
 
 last_check = None
 update_time()  # Display whatever time is on the board
-# group.append(clock_label)  # add the clock label to the group
+# group.append(bg_tilegrid)  # add the clock label to the group
 group.append(clock_label_minute)  # add the clock label to the group
 group.append(clock_label_when)  # add the clock label to the group
 group.append(clock_label_hour)  # add the clock label to the group
