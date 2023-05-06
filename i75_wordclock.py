@@ -1,3 +1,5 @@
+# pylint: disable=line-too-long,import-error,unused-import
+
 # SPDX-FileCopyrightText: 2020 John Park for Adafruit Industries
 #
 # SPDX-License-Identifier: MIT
@@ -15,8 +17,8 @@ from adafruit_display_text.label import Label
 from adafruit_bitmap_font import bitmap_font
 # from adafruit_matrixportal.network import Network
 # from adafruit_matrixportal.matrix import Matrix
-import framebufferio  # pylint: disable=import-error
-import rgbmatrix  # pylint: disable=import-error
+import framebufferio
+import rgbmatrix
 import adafruit_ds3231
 
 
